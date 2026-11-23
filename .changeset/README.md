@@ -1,6 +1,6 @@
 # Changesets
 
-Todo MR que muda tokens ou componentes traz um arquivo aqui, criado com `npm run changeset`:
+Todo pull request que muda tokens ou componentes traz um arquivo aqui, criado com `npm run changeset`:
 
 - `patch`: ajuste visual (ex.: raio do botão);
 - `minor`: token, componente ou propriedade nova;

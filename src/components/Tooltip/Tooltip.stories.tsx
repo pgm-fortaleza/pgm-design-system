@@ -10,13 +10,14 @@ const meta: Meta<typeof Tooltip> = {
     docs: {
       description: {
         component:
-          "Dica curta que aparece ao passar o mouse ou focar o elemento, e some com Esc. O texto é ligado ao elemento por `aria-describedby`; quando repete o `aria-label` do elemento, fica fora da árvore de acessibilidade para não ser lido duas vezes.",
+          "Dica curta que aparece ao passar o mouse ou focar o elemento, e some com Esc. O texto é ligado ao elemento por `aria-describedby`; com `describes={false}` (quando a dica só repete o nome do elemento, como no `IconButton`), fica fora da árvore de acessibilidade para não ser lida duas vezes.",
       },
     },
   },
   argTypes: {
     placement: { control: "select", options: ["top", "top-start", "top-end", "bottom", "bottom-start", "bottom-end"] },
     text: { control: "text" },
+    describes: { control: "boolean" },
   },
   args: {
     text: "Baixa o comprovante em PDF",

@@ -34,19 +34,19 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(functio
       {...rest}
       ref={ref}
       type={type}
-      aria-label={label}
       className={[style.iconButton, variants[variant], sizes[size], className].filter(Boolean).join(" ")}
     >
       <span className={style.icon} aria-hidden="true">
         {icon}
       </span>
+      <span className={style.visuallyHidden}>{label}</span>
     </button>
   );
 
   if (!tooltip) return button;
 
   return (
-    <Tooltip text={label} placement={tooltip === true ? "top" : tooltip}>
+    <Tooltip text={label} describes={false} placement={tooltip === true ? "top" : tooltip}>
       {button}
     </Tooltip>
   );

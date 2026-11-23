@@ -4,9 +4,10 @@ import style from "./Tooltip.module.css";
 export type TooltipPlacement = "top" | "top-start" | "top-end" | "bottom" | "bottom-start" | "bottom-end";
 
 export interface TooltipProps {
-  children: ReactElement<{ "aria-describedby"?: string; "aria-label"?: string }>;
+  children: ReactElement<{ "aria-describedby"?: string }>;
   text: ReactNode;
   placement?: TooltipPlacement;
+  describes?: boolean;
   className?: string;
 }
 
@@ -19,13 +20,12 @@ const placements: Record<TooltipPlacement, string> = {
   "bottom-end": style.bottomEnd,
 };
 
-export function Tooltip({ children, text, placement = "top", className }: TooltipProps) {
+export function Tooltip({ children, text, placement = "top", describes = true, className }: TooltipProps) {
   const [open, setOpen] = useState(false);
   const id = useId();
-  const repeatsLabel = typeof text === "string" && children.props["aria-label"] === text;
-  const describedBy = repeatsLabel
-    ? children.props["aria-describedby"]
-    : [children.props["aria-describedby"], id].filter(Boolean).join(" ");
+  const describedBy = describes
+    ? [children.props["aria-describedby"], id].filter(Boolean).join(" ")
+    : children.props["aria-describedby"];
 
   const classes = [style.tooltip, placements[placement], open ? style.open : undefined, className].filter(Boolean).join(" ");
 
@@ -47,7 +47,7 @@ export function Tooltip({ children, text, placement = "top", className }: Toolti
       onMouseLeave={() => setOpen(false)}
     >
       {cloneElement(children, { "aria-describedby": describedBy || undefined })}
-      <span className={style.surface} id={id} role="tooltip" aria-hidden={repeatsLabel || !open}>
+      <span className={style.surface} id={id} role="tooltip" aria-hidden={!describes || !open}>
         {text}
       </span>
     </span>

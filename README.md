@@ -1,8 +1,10 @@
 # PGM Design System
 
-Cores, tipografia, cantos e espaçamentos (tokens) no padrão Material Design 3, compartilhados entre o **Portal PGM**, o **Ágilis Processos** e o **Ágilis Dívida**.
+Tokens no padrão Material Design 3 (cores, tipografia, cantos e espaçamentos) e componentes React, compartilhados entre o **Portal PGM**, o **Ágilis Processos** e o **Ágilis Dívida**, sistemas da Procuradoria Geral do Município de Fortaleza.
 
-O catálogo visual das paletas sai em `dist/catalog/index.html` a cada build e fica disponível no MR como **Catalogo de paletas** (artefato do job `build`).
+**Storybook:** https://pgm-fortaleza.github.io/pgm-design-system/
+
+O catálogo visual das paletas sai em `dist/catalog/index.html` a cada build e fica disponível em cada pull request como artefato **catalogo-de-paletas** do workflow CI.
 
 ## Temas
 
@@ -18,19 +20,13 @@ Todos os temas têm os mesmos papéis (`primary`, `on-primary`, `surface-contain
 
 ## Instalar
 
-Não há registry npm. Cada sistema instala uma versão fixa direto do repositório:
+Não há registry npm. Instale uma versão fixa direto do repositório:
 
 ```sh
-npm i git+https://gitlab.fortaleza.ce.gov.br/devpgm/pgm-design-system.git#v0.1.0
+npm i github:pgm-fortaleza/pgm-design-system#v0.1.0
 ```
 
-No CI do sistema, antes do `npm ci`:
-
-```sh
-git config --global url."https://gitlab-ci-token:${CI_JOB_TOKEN}@gitlab.fortaleza.ce.gov.br/".insteadOf "https://gitlab.fortaleza.ce.gov.br/"
-```
-
-O projeto do sistema precisa estar na lista de acesso do job token deste repositório (Settings > CI/CD > Job token permissions).
+As versões estão em [Releases](https://github.com/pgm-fortaleza/pgm-design-system/releases).
 
 ## Usar
 
@@ -63,7 +59,7 @@ themes.divida.modes.dark["pgm-sys-color-primary"];
 
 ## Desenvolver
 
-Node 18 ou superior.
+Node 24 (`nvm use`).
 
 ```sh
 npm ci
@@ -78,21 +74,27 @@ open dist/catalog/index.html
 
 ## Liberar uma versão
 
-1. No MR, crie um changeset com `npm run changeset` e rode `npm run version` para subir a versão e o `CHANGELOG.md`.
-2. Depois do merge, rode o job manual `release` na pipeline da `main`.
-3. O job compila, grava `dist/tokens` num commit da branch `release` e cria a tag `vX.Y.Z`. É essa tag que os sistemas instalam.
-
-O job usa a variável `RELEASE_TOKEN` (token de projeto com `write_repository`).
+1. No pull request, crie um changeset com `npm run changeset` e rode `npm run version` para subir a versão e o `CHANGELOG.md`.
+2. Depois do merge, rode o workflow **Release** em Actions → Release → Run workflow, na `main`.
+3. O workflow compila, grava `dist/tokens` num commit da branch `release`, cria a tag `vX.Y.Z` e publica a release com o trecho do changelog. É essa tag que os sistemas instalam.
 
 ## Storybook
 
 Documentação viva das fundações (cores, tipografia, cantos, elevação, espaçamento e ícones) e dos componentes, com troca de tema e modo, controles e relatório de acessibilidade.
 
-- Publicado em http://pages.pgm.for.br/pgm-design-system/ (rede da PGM ou VPN), atualizado até 10 minutos depois de cada merge na `main`.
+- Publicado em https://pgm-fortaleza.github.io/pgm-design-system/ pelo workflow **Storybook** a cada merge na `main`.
 - Local (Node 24, `nvm use`): `npm run storybook` abre em `http://localhost:6006`.
-- Build estático: `npm run build-storybook` gera `storybook-static/`. No CI, o job `storybook` deixa essa pasta como artefato **Storybook**.
+- Build estático: `npm run build-storybook` gera `storybook-static/`. Em cada pull request, o workflow CI deixa essa pasta como artefato **storybook**.
 
 Histórias ficam junto do componente (`src/components/<Nome>/<Nome>.stories.tsx`); as fundações ficam em `src/foundations`.
+
+## Contribuições
+
+O desenvolvimento é feito pela equipe da PGM Fortaleza. Pull requests de forks são fechados automaticamente.
+
+## Licença
+
+[Apache License 2.0](LICENSE). Os nomes e marcas "PGM", "Portal PGM" e "Ágilis" não estão incluídos na licença (ver [NOTICE](NOTICE)).
 
 ## Documentação
 

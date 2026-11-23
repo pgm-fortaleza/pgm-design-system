@@ -13,7 +13,7 @@ const meta: Meta<typeof IconButton> = {
     docs: {
       description: {
         component:
-          "Botão só com ícone. `label` é obrigatório: vira o `aria-label` e, com `tooltip`, a dica mostrada ao passar o mouse ou focar.",
+          "Botão só com ícone. `label` é obrigatório: vira o nome acessível do botão (texto oculto, lido pelo leitor de tela) e, com `tooltip`, a dica mostrada ao passar o mouse ou focar.",
       },
     },
   },

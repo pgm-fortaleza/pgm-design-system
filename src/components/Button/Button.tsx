@@ -50,15 +50,18 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPr
     disabled = false,
     className,
     children,
+    "aria-label": ariaLabel,
     ...rest
   } = props;
+
+  const iconOnly = children === undefined;
 
   const classes = [
     style.button,
     variants[variant],
     sizes[size],
     shape === "square" ? style.square : style.round,
-    children === undefined ? style.iconOnly : undefined,
+    iconOnly ? style.iconOnly : undefined,
     fullWidth ? style.fullWidth : undefined,
     className,
   ]
@@ -72,7 +75,7 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPr
           {icon}
         </span>
       )}
-      {children !== undefined && <span className={style.label}>{children}</span>}
+      {iconOnly ? <span className={style.visuallyHidden}>{ariaLabel}</span> : <span className={style.label}>{children}</span>}
       {trailingIcon && (
         <span className={style.icon} aria-hidden="true">
           {trailingIcon}
@@ -86,6 +89,7 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPr
     return (
       <a
         {...anchor}
+        aria-label={iconOnly ? undefined : ariaLabel}
         ref={ref as React.Ref<HTMLAnchorElement>}
         className={classes}
         href={disabled ? undefined : href}
@@ -100,7 +104,14 @@ export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonPr
 
   const { type = "button", ...button } = rest as AsButton;
   return (
-    <button {...button} ref={ref as React.Ref<HTMLButtonElement>} type={type} className={classes} disabled={disabled}>
+    <button
+      {...button}
+      aria-label={iconOnly ? undefined : ariaLabel}
+      ref={ref as React.Ref<HTMLButtonElement>}
+      type={type}
+      className={classes}
+      disabled={disabled}
+    >
       {content}
     </button>
   );

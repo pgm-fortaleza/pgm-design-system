@@ -1,0 +1,55 @@
+name: Release
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release
+
+jobs:
+  release:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - name: Conferir versão
+        id: version
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          if git ls-remote --exit-code --tags origin "refs/tags/v$VERSION" >/dev/null; then
+            echo "::error::A versão v$VERSION já existe. Rode npm run version no PR antes de liberar."
+            exit 1
+          fi
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+      - name: Criar branch release e tag
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -B release
+          git add -f dist/tokens
+          git commit -m "Release v$VERSION"
+          git tag "v$VERSION"
+          git push --force origin HEAD:refs/heads/release
+          git push origin "refs/tags/v$VERSION"
+      - name: Publicar release
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ -f CHANGELOG.md ]; then
+            awk -v v="## $VERSION" '$0 == v {found=1; next} found && /^## / {exit} found' CHANGELOG.md > notes.md
+          fi
+          [ -s notes.md ] || echo "Versão $VERSION." > notes.md
+          printf '\n```sh\nnpm i github:%s#v%s\n```\n' "$GITHUB_REPOSITORY" "$VERSION" >> notes.md
+          gh release create "v$VERSION" --title "v$VERSION" --notes-file notes.md --verify-tag
