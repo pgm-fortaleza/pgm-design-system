@@ -4,15 +4,13 @@ Tokens no padrão Material Design 3 (cores, tipografia, cantos e espaçamentos) 
 
 **Storybook:** https://pgm-fortaleza.github.io/pgm-design-system/
 
-O catálogo visual das paletas sai em `dist/catalog/index.html` a cada build e fica disponível em cada pull request como artefato **catalogo-de-paletas** do workflow CI.
-
 ## Temas
 
-| Tema | Arquivo | Modos | Situação |
-|---|---|---|---|
-| Portal PGM | `tokens/css/portal.css` | claro | em uso nas telas novas do Portal |
-| Ágilis Processos | `tokens/css/processos.css` | claro e escuro | provisório |
-| Ágilis Dívida | `tokens/css/divida.css` | claro e escuro | provisório |
+| Tema | Arquivo | Modos |
+|---|---|---|
+| Portal PGM | `tokens/css/portal.css` | claro |
+| Ágilis Processos | `tokens/css/processos.css` | claro e escuro |
+| Ágilis Dívida | `tokens/css/divida.css` | claro e escuro |
 
 Os temas dos Ágilis são gerados pelo Material Design 3 a partir das cores atuais dos sistemas (`tokens/themes/seeds.json`). Eles valem até o design definir a paleta final; aí basta trocar a cor-semente ou os valores e liberar uma nova versão.
 
@@ -72,12 +70,6 @@ open dist/catalog/index.html
 - `npm run themes`: regera os temas dos Ágilis a partir de `tokens/themes/seeds.json`. O tema do Portal é mantido à mão.
 - `npm run build`: gera `dist/tokens` (CSS, SCSS, JS e `tokens.json`) com Style Dictionary e o catálogo em `dist/catalog`.
 
-## Liberar uma versão
-
-1. No pull request, crie um changeset com `npm run changeset` e rode `npm run version` para subir a versão e o `CHANGELOG.md`.
-2. Depois do merge, rode o workflow **Release** em Actions → Release → Run workflow, na `main`.
-3. O workflow compila, grava `dist/tokens` num commit da branch `release`, cria a tag `vX.Y.Z` e publica a release com o trecho do changelog. É essa tag que os sistemas instalam.
-
 ## Storybook
 
 Documentação viva das fundações (cores, tipografia, cantos, elevação, espaçamento e ícones) e dos componentes, com troca de tema e modo, controles e relatório de acessibilidade.
@@ -95,7 +87,3 @@ O desenvolvimento é feito pela equipe da PGM Fortaleza. Pull requests de forks 
 ## Licença
 
 [Apache License 2.0](LICENSE). Os nomes e marcas "PGM", "Portal PGM" e "Ágilis" não estão incluídos na licença (ver [NOTICE](NOTICE)).
-
-## Documentação
-
-- [Estudo e plano](docs/estudo.md)
