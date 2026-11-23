@@ -56,6 +56,15 @@
   background: var(--pgm-sys-color-info);
 }
 
+.secondary {
+  background: var(--pgm-sys-color-secondary-container);
+  color: var(--pgm-sys-color-on-secondary-container);
+}
+
+.secondary .dot {
+  background: var(--pgm-sys-color-secondary);
+}
+
 .neutral {
   background: var(--pgm-sys-color-surface-container-highest);
   color: var(--pgm-sys-color-on-surface-variant);
