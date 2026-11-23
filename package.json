@@ -1,0 +1,54 @@
+{
+  "name": "@pgm/design-system",
+  "version": "0.1.0",
+  "description": "Tokens MD3 e catálogo de paletas compartilhados entre Portal PGM, Ágilis Processos e Ágilis Dívida.",
+  "private": true,
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.fortaleza.ce.gov.br/devpgm/pgm-design-system.git"
+  },
+  "type": "module",
+  "files": [
+    "dist/tokens"
+  ],
+  "exports": {
+    "./tokens": {
+      "types": "./dist/tokens/js/index.d.ts",
+      "import": "./dist/tokens/js/index.mjs",
+      "require": "./dist/tokens/js/index.cjs"
+    },
+    "./tokens/tokens.json": "./dist/tokens/tokens.json",
+    "./tokens/css/*": "./dist/tokens/css/*",
+    "./tokens/scss/*": "./dist/tokens/scss/*",
+    "./package.json": "./package.json"
+  },
+  "engines": {
+    "node": ">=22.12"
+  },
+  "scripts": {
+    "themes": "node scripts/generate-themes.mjs",
+    "build": "node scripts/build-tokens.mjs && node scripts/build-catalog.mjs",
+    "changeset": "changeset",
+    "version": "changeset version",
+    "storybook": "npm run build && storybook dev -p 6006",
+    "build-storybook": "npm run build && storybook build",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.31.1",
+    "@material/material-color-utilities": "^0.3.0",
+    "@storybook/addon-a11y": "^10.6.7",
+    "@storybook/addon-docs": "^10.6.7",
+    "@storybook/react-vite": "^10.6.7",
+    "@types/react": "^18.3.31",
+    "@types/react-dom": "^18.3.7",
+    "@vitejs/plugin-react": "^6.3.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "storybook": "^10.6.7",
+    "style-dictionary": "^4.4.0",
+    "typescript": "~5.9.3",
+    "vite": "^8.3.8"
+  }
+}

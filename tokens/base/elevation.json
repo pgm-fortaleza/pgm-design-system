@@ -1,0 +1,33 @@
+{
+  "ref": {
+    "elevation": {
+      "shadow-key": {
+        "$type": "color",
+        "$value": "rgba(0, 0, 0, 0.3)"
+      },
+      "shadow-ambient": {
+        "$type": "color",
+        "$value": "rgba(0, 0, 0, 0.15)"
+      }
+    }
+  },
+  "sys": {
+    "elevation": {
+      "level0": {
+        "$value": "0 0 0 0 {ref.elevation.shadow-key}, 0 0 0 0 {ref.elevation.shadow-ambient}"
+      },
+      "level1": {
+        "$value": "0 1px 2px 0 {ref.elevation.shadow-key}, 0 1px 3px 1px {ref.elevation.shadow-ambient}"
+      },
+      "level2": {
+        "$value": "0 1px 2px 0 {ref.elevation.shadow-key}, 0 2px 6px 2px {ref.elevation.shadow-ambient}"
+      },
+      "level3": {
+        "$value": "0 1px 3px 0 {ref.elevation.shadow-key}, 0 4px 8px 3px {ref.elevation.shadow-ambient}"
+      },
+      "level4": {
+        "$value": "0 2px 3px 0 {ref.elevation.shadow-key}, 0 6px 10px 4px {ref.elevation.shadow-ambient}"
+      }
+    }
+  }
+}

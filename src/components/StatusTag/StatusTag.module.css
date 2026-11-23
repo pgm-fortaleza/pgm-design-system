@@ -1,0 +1,66 @@
+.tag {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 6px;
+  width: fit-content;
+  padding: 2px 8px 2px 6px;
+  border-radius: var(--pgm-sys-shape-corner-small);
+  font-family: var(--pgm-sys-typescale-label-large-font);
+  font-size: var(--pgm-sys-typescale-label-large-size);
+  font-weight: var(--pgm-sys-typescale-label-large-weight);
+  line-height: var(--pgm-sys-typescale-label-large-line-height);
+  letter-spacing: var(--pgm-sys-typescale-label-large-tracking);
+  white-space: nowrap;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.success {
+  background: var(--pgm-sys-color-success-container);
+  color: var(--pgm-sys-color-on-success-container);
+}
+
+.success .dot {
+  background: var(--pgm-sys-color-success);
+}
+
+.warning {
+  background: var(--pgm-sys-color-warning-container);
+  color: var(--pgm-sys-color-on-warning-container);
+}
+
+.warning .dot {
+  background: var(--pgm-sys-color-warning);
+}
+
+.error {
+  background: var(--pgm-sys-color-error-container);
+  color: var(--pgm-sys-color-on-error-container);
+}
+
+.error .dot {
+  background: var(--pgm-sys-color-error);
+}
+
+.info {
+  background: var(--pgm-sys-color-info-container);
+  color: var(--pgm-sys-color-on-info-container);
+}
+
+.info .dot {
+  background: var(--pgm-sys-color-info);
+}
+
+.neutral {
+  background: var(--pgm-sys-color-surface-container-highest);
+  color: var(--pgm-sys-color-on-surface-variant);
+}
+
+.neutral .dot {
+  background: var(--pgm-sys-color-outline);
+}

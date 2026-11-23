@@ -1,0 +1,102 @@
+.rail {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pgm-sys-spacing-6);
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pgm-sys-spacing-1);
+}
+
+.sectionLabel {
+  display: flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 var(--pgm-sys-spacing-4);
+  color: var(--pgm-sys-color-on-surface-variant);
+  font-family: var(--pgm-sys-typescale-title-small-font);
+  font-size: var(--pgm-sys-typescale-title-small-size);
+  font-weight: var(--pgm-sys-typescale-title-small-weight);
+  line-height: var(--pgm-sys-typescale-title-small-line-height);
+  letter-spacing: var(--pgm-sys-typescale-title-small-tracking);
+}
+
+.item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--pgm-sys-spacing-3);
+  min-height: 40px;
+  padding: 0 var(--pgm-sys-spacing-4);
+  border-radius: var(--pgm-sys-shape-corner-full);
+  color: var(--pgm-sys-color-on-surface-variant);
+  font-family: var(--pgm-sys-typescale-label-large-font);
+  font-size: var(--pgm-sys-typescale-label-large-size);
+  font-weight: var(--pgm-sys-typescale-label-large-weight);
+  line-height: var(--pgm-sys-typescale-label-large-line-height);
+  letter-spacing: var(--pgm-sys-typescale-label-large-tracking);
+  text-decoration: none;
+  overflow: hidden;
+  outline: none;
+  isolation: isolate;
+}
+
+.item::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: var(--pgm-sys-color-on-surface-variant);
+  opacity: 0;
+  transition: opacity 150ms ease;
+  pointer-events: none;
+}
+
+.item:hover::before {
+  opacity: 0.08;
+}
+
+.item:active::before {
+  opacity: 0.1;
+}
+
+.item:hover,
+.item:focus {
+  color: var(--pgm-sys-color-on-surface-variant);
+  text-decoration: none;
+}
+
+.item:focus-visible {
+  outline: 3px solid var(--pgm-sys-color-secondary);
+  outline-offset: 2px;
+}
+
+.active,
+.active:hover,
+.active:focus {
+  background: var(--pgm-sys-color-secondary-container);
+  color: var(--pgm-sys-color-on-secondary-container);
+}
+
+.active::before {
+  background: var(--pgm-sys-color-on-secondary-container);
+}
+
+.icon {
+  flex-shrink: 0;
+  font-size: 24px;
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+}
+
+.active .icon {
+  font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24;
+}
+
+.label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

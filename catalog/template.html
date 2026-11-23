@@ -1,0 +1,733 @@
+<title>Paletas PGM</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Catálogo de cores, tipografia, formas e espaçamentos dos temas Portal PGM, Ágilis Processos e Ágilis Dívida.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;800&family=Roboto+Mono:wght@400;500&display=swap">
+<style>
+/*__TOKENS__*/
+</style>
+<style>
+:root {
+  --page-bg: var(--pgm-sys-color-surface);
+  --page-fg: var(--pgm-sys-color-on-surface);
+  --page-muted: var(--pgm-sys-color-on-surface-variant);
+  --page-line: var(--pgm-sys-color-outline-variant);
+  --page-raised: var(--pgm-sys-color-surface-container-low);
+  --page-accent: var(--pgm-sys-color-primary);
+  --font-display: var(--pgm-ref-typeface-brand, 'Montserrat', 'Segoe UI', Arial, sans-serif);
+  --font-body: var(--pgm-ref-typeface-plain, 'Montserrat', 'Segoe UI', Arial, sans-serif);
+  --font-code: 'Roboto Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+  color-scheme: light;
+}
+:root[data-pgm-mode="dark"] { color-scheme: dark; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]):not([data-pgm-mode]) { color-scheme: dark; } }
+:root[data-theme="dark"]:not([data-pgm-mode]) { color-scheme: dark; }
+
+* { box-sizing: border-box; }
+html { background: var(--page-bg); }
+body {
+  margin: 0;
+  background: var(--page-bg);
+  color: var(--page-fg);
+  font-family: var(--font-body);
+  font-size: var(--pgm-sys-typescale-body-large-size);
+  line-height: var(--pgm-sys-typescale-body-large-line-height);
+  font-weight: var(--pgm-sys-typescale-body-large-weight);
+  transition: background-color 160ms ease, color 160ms ease;
+}
+@media (prefers-reduced-motion: reduce) { body, .swatch, .segmented button { transition: none; } }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--pgm-sys-color-surface-container); }
+
+.wrap {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+
+.topbar {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 5;
+  background: var(--pgm-sys-color-surface-container);
+  border-bottom: 1px solid var(--page-line);
+}
+.topbar .wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--pgm-sys-spacing-3) var(--pgm-sys-spacing-6);
+  padding-block: var(--pgm-sys-spacing-3);
+}
+.brand { display: flex; align-items: baseline; gap: var(--pgm-sys-spacing-3); min-width: 0; }
+.brand h1 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--pgm-sys-typescale-title-large-size);
+  line-height: var(--pgm-sys-typescale-title-large-line-height);
+  font-weight: var(--pgm-sys-typescale-title-large-emphasized-weight);
+}
+.version { font-family: var(--font-code); font-size: 0.75rem; color: var(--page-muted); }
+.controls { display: flex; flex-wrap: wrap; gap: var(--pgm-sys-spacing-2) var(--pgm-sys-spacing-3); }
+
+.segmented {
+  display: inline-flex;
+  border: 1px solid var(--pgm-sys-color-outline);
+  border-radius: var(--pgm-sys-shape-corner-full);
+  overflow: hidden;
+  max-width: 100%;
+}
+.segmented button {
+  appearance: none;
+  border: 0;
+  border-left: 1px solid var(--pgm-sys-color-outline);
+  background: transparent;
+  color: var(--page-fg);
+  font: inherit;
+  font-size: var(--pgm-sys-typescale-label-large-size);
+  font-weight: var(--pgm-sys-typescale-label-large-weight);
+  line-height: var(--pgm-sys-typescale-label-large-line-height);
+  padding: 8px 14px;
+  min-height: 40px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 120ms ease;
+}
+.segmented button:first-child { border-left: 0; }
+.segmented button:hover:not(:disabled) { background: color-mix(in srgb, var(--page-fg) 8%, transparent); }
+.segmented button[aria-pressed="true"] {
+  background: var(--pgm-sys-color-secondary-container);
+  color: var(--pgm-sys-color-on-secondary-container);
+}
+.segmented button:disabled { color: color-mix(in srgb, var(--page-fg) 38%, transparent); cursor: not-allowed; }
+button:focus-visible, a:focus-visible { outline: 3px solid var(--pgm-sys-color-tertiary); outline-offset: 2px; }
+
+main { display: flex; flex-direction: column; gap: var(--pgm-sys-spacing-12); padding-block: var(--pgm-sys-spacing-8) var(--pgm-sys-spacing-16); }
+
+.intro { display: grid; gap: var(--pgm-sys-spacing-4); grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); align-items: start; }
+.intro h2 {
+  margin: 0 0 var(--pgm-sys-spacing-2);
+  font-family: var(--font-display);
+  font-size: var(--pgm-sys-typescale-headline-medium-size);
+  line-height: var(--pgm-sys-typescale-headline-medium-line-height);
+  font-weight: var(--pgm-sys-typescale-headline-medium-weight);
+  text-wrap: balance;
+}
+.intro p { margin: 0; color: var(--page-muted); max-width: 62ch; }
+.status {
+  border-radius: var(--pgm-sys-shape-corner-medium);
+  padding: var(--pgm-sys-spacing-4);
+  display: flex;
+  gap: var(--pgm-sys-spacing-3);
+  align-items: flex-start;
+  font-size: var(--pgm-sys-typescale-body-medium-size);
+  line-height: var(--pgm-sys-typescale-body-medium-line-height);
+}
+.status[data-status="approved"] { background: var(--pgm-sys-color-success-container); color: var(--pgm-sys-color-on-success-container); }
+.status[data-status="provisional"] { background: var(--pgm-sys-color-warning-container); color: var(--pgm-sys-color-on-warning-container); }
+.status strong { display: block; font-weight: var(--pgm-sys-typescale-title-small-weight); margin-bottom: 2px; }
+.status-dot { flex: 0 0 auto; width: 10px; height: 10px; border-radius: 50%; margin-top: 6px; background: currentColor; }
+
+section > header { display: flex; flex-direction: column; gap: var(--pgm-sys-spacing-1); margin-bottom: var(--pgm-sys-spacing-5); }
+section h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--pgm-sys-typescale-headline-small-size);
+  line-height: var(--pgm-sys-typescale-headline-small-line-height);
+  font-weight: var(--pgm-sys-typescale-headline-small-weight);
+}
+section > header p { margin: 0; color: var(--page-muted); max-width: 70ch; font-size: var(--pgm-sys-typescale-body-medium-size); line-height: var(--pgm-sys-typescale-body-medium-line-height); }
+h3 {
+  margin: 0 0 var(--pgm-sys-spacing-3);
+  font-size: var(--pgm-sys-typescale-title-medium-size);
+  line-height: var(--pgm-sys-typescale-title-medium-line-height);
+  font-weight: var(--pgm-sys-typescale-title-medium-weight);
+}
+.group + .group { margin-top: var(--pgm-sys-spacing-8); }
+.group > p { margin: -6px 0 var(--pgm-sys-spacing-3); color: var(--page-muted); font-size: var(--pgm-sys-typescale-body-small-size); line-height: var(--pgm-sys-typescale-body-small-line-height); }
+
+.preview {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: var(--pgm-sys-spacing-4);
+}
+.screen {
+  background: var(--pgm-sys-color-surface-container-lowest);
+  border: 1px solid var(--page-line);
+  border-radius: var(--pgm-sys-shape-corner-large);
+  overflow: hidden;
+  min-width: 0;
+}
+.screen-bar {
+  display: flex; align-items: center; justify-content: space-between; gap: var(--pgm-sys-spacing-3);
+  padding: var(--pgm-sys-spacing-3) var(--pgm-sys-spacing-4);
+  background: var(--pgm-sys-color-surface-container);
+  font-weight: var(--pgm-sys-typescale-title-medium-weight);
+}
+.screen-bar span:last-child { font-size: var(--pgm-sys-typescale-label-medium-size); color: var(--page-muted); font-weight: var(--pgm-sys-typescale-label-medium-weight); }
+.screen-body { display: flex; flex-direction: column; gap: var(--pgm-sys-spacing-4); padding: var(--pgm-sys-spacing-5); }
+.case {
+  background: var(--pgm-sys-color-surface-container-low);
+  border-radius: var(--pgm-sys-shape-corner-medium);
+  padding: var(--pgm-sys-spacing-4);
+  display: flex; flex-direction: column; gap: var(--pgm-sys-spacing-2);
+}
+.case-title { font-size: var(--pgm-sys-typescale-title-medium-size); line-height: var(--pgm-sys-typescale-title-medium-line-height); font-weight: var(--pgm-sys-typescale-title-medium-weight); }
+.case-meta { font-size: var(--pgm-sys-typescale-body-medium-size); line-height: var(--pgm-sys-typescale-body-medium-line-height); color: var(--page-muted); font-variant-numeric: tabular-nums; }
+.tags { display: flex; flex-wrap: wrap; gap: var(--pgm-sys-spacing-2); }
+.tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  border-radius: var(--pgm-sys-shape-corner-small);
+  padding: 2px 10px 2px 8px;
+  font-size: var(--pgm-sys-typescale-label-large-size);
+  line-height: var(--pgm-sys-typescale-label-large-line-height);
+  font-weight: var(--pgm-sys-typescale-label-large-weight);
+}
+.tag::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+.tag-info { background: var(--pgm-sys-color-info-container); color: var(--pgm-sys-color-on-info-container); }
+.tag-success { background: var(--pgm-sys-color-success-container); color: var(--pgm-sys-color-on-success-container); }
+.tag-warning { background: var(--pgm-sys-color-warning-container); color: var(--pgm-sys-color-on-warning-container); }
+.tag-error { background: var(--pgm-sys-color-error-container); color: var(--pgm-sys-color-on-error-container); }
+.field {
+  border: 1px solid var(--pgm-sys-color-outline);
+  border-radius: var(--pgm-sys-shape-corner-extra-small);
+  padding: 10px 14px;
+  display: flex; flex-direction: column;
+  background: transparent;
+}
+.field label { font-size: var(--pgm-sys-typescale-body-small-size); line-height: var(--pgm-sys-typescale-body-small-line-height); color: var(--pgm-sys-color-primary); font-weight: 600; }
+.field span { font-variant-numeric: tabular-nums; }
+.actions { display: flex; flex-wrap: wrap; gap: var(--pgm-sys-spacing-2); justify-content: flex-end; }
+.btn {
+  appearance: none; border: 0; font: inherit;
+  font-size: var(--pgm-sys-typescale-label-large-size);
+  line-height: var(--pgm-sys-typescale-label-large-line-height);
+  font-weight: var(--pgm-sys-typescale-label-large-weight);
+  min-height: 40px; padding: 10px 24px;
+  border-radius: var(--pgm-sys-shape-corner-full);
+  cursor: pointer;
+}
+.btn-filled { background: var(--pgm-sys-color-primary); color: var(--pgm-sys-color-on-primary); box-shadow: var(--pgm-sys-elevation-level0); }
+.btn-filled:hover { box-shadow: var(--pgm-sys-elevation-level1); }
+.btn-tonal { background: var(--pgm-sys-color-secondary-container); color: var(--pgm-sys-color-on-secondary-container); }
+.btn-outlined { background: transparent; color: var(--pgm-sys-color-primary); box-shadow: inset 0 0 0 1px var(--pgm-sys-color-outline); }
+.btn-text { background: transparent; color: var(--pgm-sys-color-primary); padding-inline: 12px; }
+
+.side { display: flex; flex-direction: column; gap: var(--pgm-sys-spacing-4); min-width: 0; }
+.dialog {
+  background: var(--pgm-sys-color-surface-container-high);
+  border-radius: var(--pgm-sys-shape-corner-extra-large);
+  padding: var(--pgm-sys-spacing-6);
+  display: flex; flex-direction: column; gap: var(--pgm-sys-spacing-4);
+  box-shadow: var(--pgm-sys-elevation-level3);
+}
+.dialog h4 { margin: 0; font-family: var(--font-display); font-size: var(--pgm-sys-typescale-headline-small-size); line-height: var(--pgm-sys-typescale-headline-small-line-height); font-weight: var(--pgm-sys-typescale-headline-small-weight); }
+.dialog p { margin: 0; color: var(--page-muted); font-size: var(--pgm-sys-typescale-body-medium-size); line-height: var(--pgm-sys-typescale-body-medium-line-height); }
+.snackbar {
+  background: var(--pgm-sys-color-inverse-surface); color: var(--pgm-sys-color-inverse-on-surface);
+  border-radius: var(--pgm-sys-shape-corner-extra-small);
+  padding: 12px 16px;
+  display: flex; align-items: center; justify-content: space-between; gap: var(--pgm-sys-spacing-3);
+  box-shadow: var(--pgm-sys-elevation-level3);
+  font-size: var(--pgm-sys-typescale-body-medium-size);
+}
+.snackbar b { color: var(--pgm-sys-color-inverse-primary); font-weight: var(--pgm-sys-typescale-label-large-weight); }
+
+.swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: var(--pgm-sys-spacing-3); }
+.swatch {
+  border-radius: var(--pgm-sys-shape-corner-medium);
+  padding: var(--pgm-sys-spacing-3) var(--pgm-sys-spacing-4);
+  min-height: 112px;
+  display: flex; flex-direction: column; justify-content: space-between; gap: var(--pgm-sys-spacing-3);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--page-fg) 10%, transparent);
+  transition: background-color 160ms ease, color 160ms ease;
+  min-width: 0;
+}
+.swatch-name { font-weight: var(--pgm-sys-typescale-title-small-weight); font-size: var(--pgm-sys-typescale-title-small-size); line-height: var(--pgm-sys-typescale-title-small-line-height); }
+.swatch-foot { display: flex; justify-content: space-between; align-items: flex-end; gap: var(--pgm-sys-spacing-2); flex-wrap: wrap; }
+.swatch code, .mono { font-family: var(--font-code); font-size: 0.75rem; line-height: 1.1rem; }
+.swatch code { display: block; opacity: 0.86; overflow-wrap: anywhere; }
+.contrast {
+  font-family: var(--font-code); font-size: 0.6875rem; line-height: 1rem;
+  border-radius: var(--pgm-sys-shape-corner-full);
+  padding: 1px 8px;
+  box-shadow: inset 0 0 0 1px currentColor;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.compare-scroll { overflow-x: auto; border: 1px solid var(--page-line); border-radius: var(--pgm-sys-shape-corner-medium); }
+.compare { border-collapse: collapse; width: 100%; min-width: 620px; }
+.compare th, .compare td { padding: var(--pgm-sys-spacing-3); text-align: left; border-bottom: 1px solid var(--page-line); vertical-align: middle; }
+.compare tr:last-child td { border-bottom: 0; }
+.compare thead th { font-size: var(--pgm-sys-typescale-label-large-size); font-weight: var(--pgm-sys-typescale-label-large-weight); background: var(--page-raised); }
+.compare thead th.current { color: var(--page-accent); }
+.compare tbody th { font-weight: var(--pgm-sys-typescale-body-medium-emphasized-weight); font-size: var(--pgm-sys-typescale-body-medium-size); }
+.chip { display: flex; align-items: center; gap: var(--pgm-sys-spacing-2); }
+.chip i { flex: 0 0 auto; width: 36px; height: 36px; border-radius: var(--pgm-sys-shape-corner-small); box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--page-fg) 12%, transparent); }
+.empty { color: var(--page-muted); font-size: var(--pgm-sys-typescale-body-small-size); }
+
+.type-list { display: flex; flex-direction: column; border-top: 1px solid var(--page-line); }
+.type-row { display: grid; grid-template-columns: 180px minmax(0, 1fr); gap: var(--pgm-sys-spacing-4); padding-block: var(--pgm-sys-spacing-3); border-bottom: 1px solid var(--page-line); align-items: baseline; }
+.type-row .meta { display: flex; flex-direction: column; gap: 2px; }
+.type-row .meta strong { font-size: var(--pgm-sys-typescale-label-large-size); font-weight: var(--pgm-sys-typescale-label-large-weight); }
+.type-row .sample { overflow-wrap: anywhere; min-width: 0; }
+
+.shapes { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: var(--pgm-sys-spacing-4); }
+.shape { display: flex; flex-direction: column; gap: var(--pgm-sys-spacing-2); }
+.shape i { display: block; aspect-ratio: 16 / 10; max-width: 100%; background: var(--pgm-sys-color-primary-container); border: 2px solid var(--pgm-sys-color-primary); }
+.shape span { font-size: var(--pgm-sys-typescale-body-small-size); line-height: var(--pgm-sys-typescale-body-small-line-height); color: var(--page-muted); }
+.shape strong { font-size: var(--pgm-sys-typescale-label-large-size); font-weight: var(--pgm-sys-typescale-label-large-weight); }
+
+.two-col { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--pgm-sys-spacing-10); }
+.spacing { display: flex; flex-direction: column; gap: var(--pgm-sys-spacing-2); }
+.space-row { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: var(--pgm-sys-spacing-3); align-items: center; }
+.space-row i { display: block; height: 12px; border-radius: 2px; background: var(--pgm-sys-color-tertiary); max-width: 100%; }
+.elevations { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: var(--pgm-sys-spacing-5); }
+.elevation { background: var(--pgm-sys-color-surface-container-low); border-radius: var(--pgm-sys-shape-corner-medium); padding: var(--pgm-sys-spacing-4); min-height: 88px; display: flex; flex-direction: column; justify-content: flex-end; }
+.elevation strong { font-size: var(--pgm-sys-typescale-label-large-size); font-weight: var(--pgm-sys-typescale-label-large-weight); }
+
+.usage { background: var(--page-raised); border-radius: var(--pgm-sys-shape-corner-large); padding: var(--pgm-sys-spacing-6); display: grid; gap: var(--pgm-sys-spacing-4); grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+.usage p { margin: 0 0 var(--pgm-sys-spacing-2); color: var(--page-muted); font-size: var(--pgm-sys-typescale-body-medium-size); line-height: var(--pgm-sys-typescale-body-medium-line-height); }
+.usage pre { margin: 0; overflow-x: auto; background: var(--pgm-sys-color-surface-container-highest); border-radius: var(--pgm-sys-shape-corner-small); padding: var(--pgm-sys-spacing-3); font-family: var(--font-code); font-size: 0.75rem; line-height: 1.15rem; }
+footer { color: var(--page-muted); font-size: var(--pgm-sys-typescale-body-small-size); padding-block: 0 var(--pgm-sys-spacing-10); }
+
+@media (max-width: 900px) {
+  .intro, .preview, .two-col, .usage { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 560px) {
+  .type-row { grid-template-columns: minmax(0, 1fr); gap: var(--pgm-sys-spacing-1); }
+  .segmented button { padding: 8px 10px; }
+  .controls { width: 100%; }
+  .controls .segmented:first-child { width: 100%; }
+  .controls .segmented:first-child button { flex: 1 1 0; white-space: normal; }
+}
+</style>
+
+<header class="topbar">
+  <div class="wrap">
+    <div class="brand">
+      <h1>Paletas PGM</h1>
+      <span class="version">@pgm/design-system v__VERSION__</span>
+    </div>
+    <div class="controls">
+      <div class="segmented" role="group" aria-label="Produto" id="theme-picker"></div>
+      <div class="segmented" role="group" aria-label="Modo de cor" id="mode-picker">
+        <button type="button" data-mode="light" id="mode-light">Claro</button>
+        <button type="button" data-mode="dark" id="mode-dark">Escuro</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="intro">
+    <div>
+      <h2 id="theme-title">Portal PGM</h2>
+      <p>Cores, letras, cantos e espaçamentos que as telas novas dos sistemas da PGM usam. Os três produtos seguem os mesmos papéis do Material Design 3: um botão principal é sempre "Principal", só a cor muda de produto para produto.</p>
+    </div>
+    <div class="status" id="theme-status" data-status="approved">
+      <span class="status-dot" aria-hidden="true"></span>
+      <div><strong id="status-title"></strong><span id="status-text"></span></div>
+    </div>
+  </div>
+
+  <section aria-labelledby="preview-title">
+    <header>
+      <h2 id="preview-title">Na prática</h2>
+      <p>Uma tela de exemplo montada só com os tokens do tema escolhido. Troque o produto no topo para ver a mesma tela nas outras cores.</p>
+    </header>
+    <div class="preview">
+      <div class="screen">
+        <div class="screen-bar"><span id="screen-name">Portal PGM</span><span>Exemplo</span></div>
+        <div class="screen-body">
+          <div class="case">
+            <span class="case-title">Solicitação 2026/000123</span>
+            <span class="case-meta">Pedido de serviço · R$ 1.234,56</span>
+            <div class="tags">
+              <span class="tag tag-info">Em análise</span>
+              <span class="tag tag-success">Parcelado</span>
+              <span class="tag tag-warning">Prazo em 3 dias</span>
+              <span class="tag tag-error">Documento pendente</span>
+            </div>
+          </div>
+          <div class="field"><label>Prazo final</label><span>14/11/2026</span></div>
+          <div class="actions">
+            <button type="button" class="btn btn-text">Cancelar</button>
+            <button type="button" class="btn btn-outlined">Anexar</button>
+            <button type="button" class="btn btn-tonal">Salvar rascunho</button>
+            <button type="button" class="btn btn-filled">Protocolar</button>
+          </div>
+        </div>
+      </div>
+      <div class="side">
+        <div class="dialog" role="presentation">
+          <h4>Publicar aviso?</h4>
+          <p>O aviso entra no ar às 08:00 de 30/10/2026 e sai às 18:00 do mesmo dia.</p>
+          <div class="actions">
+            <button type="button" class="btn btn-text">Voltar</button>
+            <button type="button" class="btn btn-filled">Publicar</button>
+          </div>
+        </div>
+        <div class="snackbar"><span>Senha alterada.</span><b>Fechar</b></div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="colors-title">
+    <header>
+      <h2 id="colors-title">Cores</h2>
+      <p>Cada cartão mostra uma cor de fundo com o texto que deve ir sobre ela, o nome do token e o contraste entre os dois. Contraste a partir de 4,5:1 atende o nível AA de acessibilidade para texto comum.</p>
+    </header>
+    <div id="color-groups"></div>
+  </section>
+
+  <section aria-labelledby="compare-title">
+    <header>
+      <h2 id="compare-title">Comparar produtos</h2>
+      <p>Os mesmos papéis lado a lado nos três produtos, no modo de cor selecionado.</p>
+    </header>
+    <div class="compare-scroll"><table class="compare" id="compare"></table></div>
+  </section>
+
+  <section aria-labelledby="type-title">
+    <header>
+      <h2 id="type-title">Tipografia</h2>
+      <p>Montserrat em todos os produtos. Tamanho e altura de linha de cada estilo.</p>
+    </header>
+    <div class="type-list" id="type-list"></div>
+  </section>
+
+  <section aria-labelledby="shape-title">
+    <header>
+      <h2 id="shape-title">Cantos arredondados</h2>
+      <p>Para deixar os botões menos arredondados em todos os sistemas, muda-se o token usado por eles aqui, e a nova versão chega a cada sistema como uma atualização.</p>
+    </header>
+    <div class="shapes" id="shapes"></div>
+  </section>
+
+  <section aria-labelledby="space-title">
+    <header>
+      <h2 id="space-title">Espaçamento e elevação</h2>
+      <p>Espaços em múltiplos de 4 px e cinco níveis de sombra.</p>
+    </header>
+    <div class="two-col">
+      <div class="spacing" id="spacing"></div>
+      <div class="elevations" id="elevations"></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="usage-title">
+    <header>
+      <h2 id="usage-title">Como usar</h2>
+      <p>Para quem desenvolve. Cada sistema instala a biblioteca por uma versão fixa.</p>
+    </header>
+    <div class="usage">
+      <div>
+        <p>Instalar a versão no projeto:</p>
+        <pre>npm i git+https://gitlab.fortaleza.ce.gov.br/devpgm/pgm-design-system.git#v__VERSION__</pre>
+      </div>
+      <div>
+        <p>Carregar os tokens de um produto:</p>
+        <pre id="usage-import">import "@pgm/design-system/tokens/css/base.css";
+import "@pgm/design-system/tokens/css/portal.css";</pre>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap">Gerado a partir de <span class="mono">devpgm/pgm-design-system</span> v__VERSION__. Temas dos Ágilis provisórios até a definição do design.</footer>
+
+<script>
+const META = /*__META__*/;
+const ROOT = document.documentElement;
+
+const FAMILIES = [
+  { key: "primary", label: "Principal" },
+  { key: "secondary", label: "Secundária" },
+  { key: "tertiary", label: "Terciária" },
+];
+const GROUPS = [
+  {
+    title: "Marca",
+    note: "A cor do produto e as cores institucionais da PGM. As institucionais são iguais em todos os produtos.",
+    pairs: [
+      ["brand-product", null, "Cor do produto"],
+      ["brand-primary", null, "PGM laranja"],
+      ["brand-secondary", null, "PGM verde"],
+      ["brand-tertiary", null, "PGM azul"],
+      ["brand-background", null, "PGM fundo"],
+    ],
+  },
+  ...FAMILIES.map((family) => ({
+    title: family.label,
+    pairs: [
+      [family.key, `on-${family.key}`, family.label],
+      [`${family.key}-container`, `on-${family.key}-container`, `Contêiner ${family.label.toLowerCase()}`],
+      [`${family.key}-fixed`, `on-${family.key}-fixed`, `${family.label} fixa`],
+      [`${family.key}-fixed-dim`, `on-${family.key}-fixed-variant`, `${family.label} fixa escura`],
+    ],
+  })),
+  {
+    title: "Superfícies",
+    note: "Fundos de página, cartões e painéis, do mais baixo ao mais alto.",
+    pairs: [
+      ["surface-dim", "on-surface", "Superfície escurecida"],
+      ["surface", "on-surface", "Superfície"],
+      ["surface-bright", "on-surface", "Superfície clara"],
+      ["surface-container-lowest", "on-surface", "Contêiner mais baixo"],
+      ["surface-container-low", "on-surface", "Contêiner baixo"],
+      ["surface-container", "on-surface", "Contêiner"],
+      ["surface-container-high", "on-surface", "Contêiner alto"],
+      ["surface-container-highest", "on-surface-variant", "Contêiner mais alto"],
+    ],
+  },
+  {
+    title: "Contornos e inversas",
+    note: "Bordas, divisórias e elementos que aparecem invertidos, como o aviso rápido no rodapé da tela.",
+    pairs: [
+      ["outline", "surface", "Contorno"],
+      ["outline-variant", "on-surface", "Contorno suave"],
+      ["inverse-surface", "inverse-on-surface", "Superfície inversa"],
+      ["inverse-primary", "inverse-surface", "Principal inversa"],
+    ],
+  },
+  {
+    title: "Situações",
+    note: "Erro, informação, sucesso e alerta. Usadas em etiquetas de status e mensagens.",
+    pairs: ["error", "info", "success", "warning"].flatMap((key) => {
+      const label = { error: "Erro", info: "Informação", success: "Sucesso", warning: "Alerta" }[key];
+      return [[key, `on-${key}`, label], [`${key}-container`, `on-${key}-container`, `Contêiner ${label.toLowerCase()}`]];
+    }),
+  },
+];
+const COMPARE = [
+  ["primary", "Principal"],
+  ["primary-container", "Contêiner principal"],
+  ["secondary", "Secundária"],
+  ["tertiary", "Terciária"],
+  ["surface", "Superfície"],
+  ["surface-container", "Contêiner"],
+  ["outline", "Contorno"],
+];
+const TYPE = ["display-large", "display-medium", "display-small", "headline-large", "headline-medium", "headline-small", "title-large", "title-medium", "title-small", "body-large", "body-medium", "body-small", "label-large", "label-medium", "label-small"];
+const TYPE_SAMPLE = {
+  display: "Exemplo",
+  headline: "Título de exemplo",
+  title: "Subtítulo de exemplo",
+  body: "Texto de exemplo para mostrar o estilo de leitura do corpo da página.",
+  label: "Protocolar petição",
+};
+const SHAPES = [
+  ["none", "Sem arredondamento", "Tabelas"],
+  ["extra-small", "Extra pequeno", "Campos e avisos rápidos"],
+  ["small", "Pequeno", "Etiquetas"],
+  ["medium", "Médio", "Cartões"],
+  ["large", "Grande", "Painéis"],
+  ["extra-large", "Extra grande", "Janelas de diálogo"],
+  ["full", "Total", "Botões"],
+];
+
+const state = { theme: "portal", mode: "light" };
+
+const varName = (role) => `--pgm-sys-color-${role}`;
+const read = (name, element = ROOT) => getComputedStyle(element).getPropertyValue(name).trim();
+const hex = (value) => value.toUpperCase();
+
+function luminance(color) {
+  const value = color.replace("#", "");
+  const channels = [0, 2, 4].map((index) => parseInt(value.slice(index, index + 2), 16) / 255)
+    .map((channel) => (channel <= 0.03928 ? channel / 12.92 : ((channel + 0.055) / 1.055) ** 2.4));
+  return 0.2126 * channels[0] + 0.7152 * channels[1] + 0.0722 * channels[2];
+}
+
+function contrast(a, b) {
+  if (!/^#[0-9a-f]{6}$/i.test(a) || !/^#[0-9a-f]{6}$/i.test(b)) return null;
+  const [light, dark] = [luminance(a), luminance(b)].sort((x, y) => y - x);
+  return (light + 0.05) / (dark + 0.05);
+}
+
+function grade(ratio) {
+  if (ratio >= 7) return "AAA";
+  if (ratio >= 4.5) return "AA";
+  if (ratio >= 3) return "AA grande";
+  return "baixo";
+}
+
+function el(tag, attributes = {}, children = []) {
+  const node = document.createElement(tag);
+  Object.entries(attributes).forEach(([key, value]) => {
+    if (key === "style") Object.assign(node.style, value);
+    else if (key === "text") node.textContent = value;
+    else node.setAttribute(key, value);
+  });
+  [].concat(children).forEach((child) => child && node.append(child));
+  return node;
+}
+
+function renderPickers() {
+  const picker = document.getElementById("theme-picker");
+  Object.entries(META.themes).forEach(([slug, theme]) => {
+    const button = el("button", { type: "button", "data-theme-slug": slug, id: `theme-${slug}`, text: theme.name });
+    button.addEventListener("click", () => setState({ theme: slug }));
+    picker.append(button);
+  });
+  document.querySelectorAll("#mode-picker button").forEach((button) => {
+    button.addEventListener("click", () => setState({ mode: button.dataset.mode }));
+  });
+}
+
+function renderColors() {
+  const container = document.getElementById("color-groups");
+  container.replaceChildren(...GROUPS.map((group) => el("div", { class: "group" }, [
+    el("h3", { text: group.title }),
+    group.note ? el("p", { text: group.note }) : null,
+    el("div", { class: "swatches" }, group.pairs.map(([background, foreground, label]) => {
+      const bg = hex(read(varName(background)));
+      const fg = foreground ? hex(read(varName(foreground))) : (luminance(bg) > 0.4 ? "#1A1A1A" : "#FFFFFF");
+      const ratio = foreground ? contrast(bg, fg) : null;
+      return el("div", { class: "swatch", style: { background: bg, color: fg } }, [
+        el("span", { class: "swatch-name", text: label }),
+        el("div", { class: "swatch-foot" }, [
+          el("div", {}, [
+            el("code", { text: `${background} ${bg}` }),
+            foreground ? el("code", { text: `${foreground} ${fg}` }) : null,
+          ]),
+          ratio ? el("span", { class: "contrast", title: "Contraste entre texto e fundo", text: `${ratio.toFixed(1).replace(".", ",")}:1 ${grade(ratio)}` }) : null,
+        ]),
+      ]);
+    })),
+  ])));
+}
+
+function themeValue(slug, mode, role) {
+  const values = META.values[slug][mode];
+  return values ? values[`pgm-sys-color-${role}`] : null;
+}
+
+function renderCompare() {
+  const table = document.getElementById("compare");
+  const slugs = Object.keys(META.themes);
+  const head = el("thead", {}, el("tr", {}, [
+    el("th", { scope: "col", text: "Papel" }),
+    ...slugs.map((slug) => el("th", { scope: "col", class: slug === state.theme ? "current" : "", text: META.themes[slug].name })),
+  ]));
+  const body = el("tbody", {}, COMPARE.map(([role, label]) => el("tr", {}, [
+    el("th", { scope: "row", text: label }),
+    ...slugs.map((slug) => {
+      const value = themeValue(slug, state.mode, role);
+      return el("td", {}, value
+        ? el("div", { class: "chip" }, [el("i", { style: { background: value } }), el("span", { class: "mono", text: hex(value) })])
+        : el("span", { class: "empty", text: "Sem modo escuro" }));
+    }),
+  ])));
+  table.replaceChildren(head, body);
+}
+
+function renderType() {
+  document.getElementById("type-list").replaceChildren(...TYPE.map((role) => {
+    const prefix = `--pgm-sys-typescale-${role}`;
+    const sample = el("div", {
+      class: "sample",
+      text: TYPE_SAMPLE[role.split("-")[0]],
+      style: {
+        fontFamily: `var(${prefix}-font)`,
+        fontSize: `var(${prefix}-size)`,
+        lineHeight: `var(${prefix}-line-height)`,
+        fontWeight: `var(${prefix}-weight)`,
+        letterSpacing: `var(${prefix}-tracking)`,
+      },
+    });
+    const size = read(`${prefix}-size`);
+    const px = parseFloat(size) * 16;
+    return el("div", { class: "type-row" }, [
+      el("div", { class: "meta" }, [
+        el("strong", { text: role }),
+        el("span", { class: "mono", text: `${Math.round(px)}px / ${Math.round(parseFloat(read(`${prefix}-line-height`)) * 16)}px · ${read(`${prefix}-weight`)}` }),
+      ]),
+      sample,
+    ]);
+  }));
+}
+
+function renderShapes() {
+  document.getElementById("shapes").replaceChildren(...SHAPES.map(([key, label, use]) => el("div", { class: "shape" }, [
+    el("i", { style: { borderRadius: `var(--pgm-sys-shape-corner-${key})` } }),
+    el("strong", { text: label }),
+    el("span", { text: `${use} · ${read(`--pgm-sys-shape-corner-${key}`)}` }),
+  ])));
+}
+
+function renderSpacing() {
+  const steps = [1, 2, 3, 4, 5, 6, 8, 10, 12, 16, 20];
+  document.getElementById("spacing").replaceChildren(...steps.map((step) => el("div", { class: "space-row" }, [
+    el("span", { class: "mono", text: `spacing-${step} · ${read(`--pgm-sys-spacing-${step}`)}` }),
+    el("i", { style: { width: `var(--pgm-sys-spacing-${step})` } }),
+  ])));
+  document.getElementById("elevations").replaceChildren(...[0, 1, 2, 3, 4].map((level) => el("div", {
+    class: "elevation",
+    style: { boxShadow: `var(--pgm-sys-elevation-level${level})` },
+  }, [el("strong", { text: `Nível ${level}` })])));
+}
+
+function renderStatus() {
+  const theme = META.themes[state.theme];
+  document.getElementById("theme-title").textContent = theme.name;
+  document.getElementById("screen-name").textContent = theme.name;
+  const status = document.getElementById("theme-status");
+  status.dataset.status = theme.status;
+  document.getElementById("status-title").textContent = theme.status === "approved" ? "Paleta em uso" : "Proposta provisória";
+  document.getElementById("status-text").textContent = theme.status === "approved"
+    ? "É a paleta das telas novas do Portal em produção."
+    : `Gerada pelo Material Design 3 a partir da cor atual do sistema (${theme.seed}). A paleta final depende da definição do design.`;
+  document.getElementById("usage-import").textContent = `import "@pgm/design-system/tokens/css/base.css";\nimport "@pgm/design-system/tokens/css/${state.theme}.css";`;
+}
+
+function setState(next, updateHash = true) {
+  Object.assign(state, next);
+  const theme = META.themes[state.theme];
+  if (!theme.modes.includes(state.mode)) state.mode = "light";
+
+  ROOT.setAttribute("data-pgm-theme", state.theme);
+  ROOT.setAttribute("data-pgm-mode", state.mode);
+
+  document.querySelectorAll("#theme-picker button").forEach((button) => {
+    button.setAttribute("aria-pressed", String(button.dataset.themeSlug === state.theme));
+  });
+  document.querySelectorAll("#mode-picker button").forEach((button) => {
+    const available = theme.modes.includes(button.dataset.mode);
+    button.disabled = !available;
+    button.title = available ? "" : "Este produto ainda não tem modo escuro";
+    button.setAttribute("aria-pressed", String(button.dataset.mode === state.mode));
+  });
+
+  renderStatus();
+  renderColors();
+  renderCompare();
+  renderType();
+  renderShapes();
+  renderSpacing();
+
+  if (updateHash) {
+    const hash = `#${state.theme}${state.mode === "dark" ? "-escuro" : ""}`;
+    if (location.hash !== hash) history.replaceState(null, "", hash);
+  }
+}
+
+function fromHash() {
+  const [slug, mode] = location.hash.replace("#", "").split("-");
+  return META.themes[slug] ? { theme: slug, mode: mode === "escuro" ? "dark" : "light" } : null;
+}
+
+function preferredMode() {
+  const host = ROOT.getAttribute("data-theme");
+  if (host === "dark" || host === "light") return host;
+  return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+}
+
+renderPickers();
+setState(fromHash() || { theme: "portal", mode: preferredMode() }, false);
+window.addEventListener("hashchange", () => { const next = fromHash(); if (next) setState(next, false); });
+</script>

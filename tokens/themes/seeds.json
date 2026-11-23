@@ -1,0 +1,17 @@
+{
+  "processos": {
+    "name": "Ágilis Processos",
+    "seed": "#1EB1E7",
+    "status": "provisional"
+  },
+  "divida": {
+    "name": "Ágilis Dívida",
+    "seed": "#1ECAA1",
+    "status": "provisional"
+  },
+  "custom": {
+    "info": "#415E91",
+    "success": "#39693C",
+    "warning": "#775A0B"
+  }
+}

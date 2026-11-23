@@ -1,0 +1,44 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Introdução" />
+
+# PGM Design System
+
+Cores, tipografia, cantos, espaçamentos e componentes no padrão Material Design 3, compartilhados entre o **Portal PGM**, o **Ágilis Processos** e o **Ágilis Dívida**.
+
+## Como usar este Storybook
+
+- **Tema** e **Modo**, na barra de ferramentas, trocam o produto (Portal, Processos, Dívida) e o modo claro/escuro em todas as páginas. O Portal só tem o modo claro.
+- Em **Componentes**, a aba **Controls** altera as propriedades do componente em tempo real e a aba **Accessibility** mostra o relatório de acessibilidade (axe, WCAG 2.1 AA).
+- Em **Fundações**, as páginas leem os tokens gerados pelo build; elas mudam sozinhas quando um token muda.
+
+## Temas
+
+- **Portal PGM**: `tokens/css/portal.css`, modo claro, em uso nas telas novas do Portal.
+- **Ágilis Processos**: `tokens/css/processos.css`, modos claro e escuro, provisório.
+- **Ágilis Dívida**: `tokens/css/divida.css`, modos claro e escuro, provisório.
+
+Todos os temas têm os mesmos papéis (`primary`, `on-primary`, `surface-container`, `info`, `success`, `warning`...). Um componente escrito com `var(--pgm-sys-color-primary)` funciona em qualquer produto.
+
+## Instalar
+
+Não há registry npm. Cada sistema instala uma versão fixa direto do repositório:
+
+```sh
+npm i git+https://gitlab.fortaleza.ce.gov.br/devpgm/pgm-design-system.git#v0.1.0
+```
+
+```js
+import "@pgm/design-system/tokens/css/base.css";
+import "@pgm/design-system/tokens/css/portal.css";
+```
+
+Os componentes ainda não são publicados no pacote; por enquanto ficam documentados aqui para homologação.
+
+## Rodar localmente
+
+```sh
+nvm use
+npm ci
+npm run storybook
+```

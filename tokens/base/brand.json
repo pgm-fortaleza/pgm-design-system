@@ -1,0 +1,26 @@
+{
+  "sys": {
+    "color": {
+      "brand-primary": {
+        "$type": "color",
+        "$value": "#F15A22"
+      },
+      "brand-secondary": {
+        "$type": "color",
+        "$value": "#009889"
+      },
+      "brand-tertiary": {
+        "$type": "color",
+        "$value": "#00A2CE"
+      },
+      "brand-background": {
+        "$type": "color",
+        "$value": "#FDE4CA"
+      },
+      "brand-white": {
+        "$type": "color",
+        "$value": "#FFFFFF"
+      }
+    }
+  }
+}

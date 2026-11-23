@@ -1,0 +1,23 @@
+name: Contribuições externas
+
+on:
+  pull_request_target:
+    types: [opened, reopened]
+
+permissions:
+  pull-requests: write
+
+jobs:
+  lockdown:
+    if: github.event.pull_request.head.repo.full_name != github.repository
+    runs-on: ubuntu-latest
+    steps:
+      - uses: dessant/repo-lockdown@v4
+        with:
+          process-only: prs
+          close-pr: true
+          lock-pr: true
+          pr-comment: >
+            Obrigado pelo interesse! Este repositório é uma cópia pública do design system da
+            Procuradoria Geral do Município de Fortaleza e não recebe contribuições externas,
+            por isso este pull request foi fechado automaticamente.
