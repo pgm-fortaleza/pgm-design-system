@@ -1,16 +1,17 @@
 {
   "name": "@pgm/design-system",
   "version": "0.1.0",
-  "description": "Tokens MD3 e catálogo de paletas compartilhados entre Portal PGM, Ágilis Processos e Ágilis Dívida.",
+  "description": "Tokens Material Design 3, componentes React e Storybook do design system da PGM Fortaleza.",
   "private": true,
-  "license": "UNLICENSED",
+  "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://gitlab.fortaleza.ce.gov.br/devpgm/pgm-design-system.git"
+    "url": "git+https://github.com/pgm-fortaleza/pgm-design-system.git"
   },
   "type": "module",
   "files": [
-    "dist/tokens"
+    "dist/tokens",
+    "NOTICE"
   ],
   "exports": {
     "./tokens": {
@@ -50,5 +51,6 @@
     "style-dictionary": "^4.4.0",
     "typescript": "~5.9.3",
     "vite": "^8.3.8"
-  }
+  },
+  "homepage": "https://pgm-fortaleza.github.io/pgm-design-system/"
 }
