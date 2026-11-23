@@ -1,7 +1,7 @@
 import type { HTMLAttributes, ReactNode } from "react";
 import style from "./StatusTag.module.css";
 
-export type StatusTagTone = "success" | "warning" | "error" | "info" | "neutral";
+export type StatusTagTone = "success" | "warning" | "error" | "info" | "secondary" | "neutral";
 
 export interface StatusTagProps extends HTMLAttributes<HTMLSpanElement> {
   tone?: StatusTagTone;
@@ -14,6 +14,7 @@ const tones: Record<StatusTagTone, string> = {
   warning: style.warning,
   error: style.error,
   info: style.info,
+  secondary: style.secondary,
   neutral: style.neutral,
 };
 

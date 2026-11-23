@@ -8,9 +8,14 @@
     "type": "git",
     "url": "git+https://github.com/pgm-fortaleza/pgm-design-system.git"
   },
+  "homepage": "https://pgm-fortaleza.github.io/pgm-design-system/",
   "type": "module",
+  "sideEffects": [
+    "**/*.css"
+  ],
   "files": [
     "dist/tokens",
+    "dist/ui",
     "NOTICE"
   ],
   "exports": {
@@ -22,6 +27,11 @@
     "./tokens/tokens.json": "./dist/tokens/tokens.json",
     "./tokens/css/*": "./dist/tokens/css/*",
     "./tokens/scss/*": "./dist/tokens/scss/*",
+    "./ui": {
+      "types": "./dist/ui/index.d.ts",
+      "import": "./dist/ui/index.js"
+    },
+    "./ui/style.css": "./dist/ui/style.css",
     "./package.json": "./package.json"
   },
   "engines": {
@@ -29,12 +39,18 @@
   },
   "scripts": {
     "themes": "node scripts/generate-themes.mjs",
-    "build": "node scripts/build-tokens.mjs && node scripts/build-catalog.mjs",
+    "build": "npm run build:tokens && npm run build:ui",
+    "build:tokens": "node scripts/build-tokens.mjs && node scripts/build-catalog.mjs",
+    "build:ui": "vite build --config vite.lib.config.ts && tsc -p tsconfig.build.json",
     "changeset": "changeset",
     "version": "changeset version",
     "storybook": "npm run build && storybook dev -p 6006",
     "build-storybook": "npm run build && storybook build",
     "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
   },
   "devDependencies": {
     "@changesets/cli": "^2.31.1",
@@ -51,6 +67,5 @@
     "style-dictionary": "^4.4.0",
     "typescript": "~5.9.3",
     "vite": "^8.3.8"
-  },
-  "homepage": "https://pgm-fortaleza.github.io/pgm-design-system/"
+  }
 }

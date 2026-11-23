@@ -55,6 +55,15 @@ import { themes } from "@pgm/design-system/tokens";
 themes.divida.modes.dark["pgm-sys-color-primary"];
 ```
 
+Componentes React (React 18 ou superior), com o CSS deles importado uma vez na aplicação:
+
+```tsx
+import "@pgm/design-system/ui/style.css";
+import { Button, StatusTag, Table } from "@pgm/design-system/ui";
+```
+
+Os componentes, suas propriedades e exemplos estão no Storybook.
+
 ## Desenvolver
 
 Node 24 (`nvm use`).
@@ -68,7 +77,7 @@ open dist/catalog/index.html
 - `tokens/base/*.json`: tokens comuns, no formato DTCG.
 - `tokens/themes/<produto>/<modo>.json`: cores de cada produto.
 - `npm run themes`: regera os temas dos Ágilis a partir de `tokens/themes/seeds.json`. O tema do Portal é mantido à mão.
-- `npm run build`: gera `dist/tokens` (CSS, SCSS, JS e `tokens.json`) com Style Dictionary e o catálogo em `dist/catalog`.
+- `npm run build`: gera `dist/tokens` (CSS, SCSS, JS e `tokens.json`) com Style Dictionary, o catálogo em `dist/catalog` e os componentes em `dist/ui` (JS, CSS e tipos).
 
 ## Storybook
 

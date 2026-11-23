@@ -13,7 +13,7 @@ const meta: Meta<typeof StatusTag> = {
     },
   },
   argTypes: {
-    tone: { control: "inline-radio", options: ["success", "warning", "error", "info", "neutral"] },
+    tone: { control: "inline-radio", options: ["success", "warning", "error", "info", "secondary", "neutral"] },
     dot: { control: "boolean" },
     children: { control: "text" },
   },
@@ -37,6 +37,7 @@ export const Tons: Story = {
       <StatusTag {...args} tone="warning">Rascunho</StatusTag>
       <StatusTag {...args} tone="error">Vencido</StatusTag>
       <StatusTag {...args} tone="info">Em análise</StatusTag>
+      <StatusTag {...args} tone="secondary">Agendado</StatusTag>
       <StatusTag {...args} tone="neutral">Inativo</StatusTag>
     </div>
   ),
